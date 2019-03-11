@@ -1,24 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const onToggle = () => {
-    setIsOpen(!isOpen);
-  }
-
-  return (
-    <>
-      <nav>
-        <div className="nav-wrapper green accent-2">
-          <a href="#" className="brand-logo">Shopping List</a>
+const Navigation = () => (
+  <>
+    <nav>
+      <div className="nav-wrapper green accent-4">
+        <div className='container'>
+          <a href="#" className="brand-logo">Grocerme</a>
           <ul className="right">
             <li><a href="https://github.com">Github</a></li>
           </ul>
         </div>        
-      </nav>
-    </>
-  );
-}
+      </div>        
+    </nav>
+  </>
+);
 
 export default Navigation;
