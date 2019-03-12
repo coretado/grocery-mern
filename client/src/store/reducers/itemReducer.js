@@ -17,7 +17,7 @@ export default function(state = INITIAL_STATE, action) {
       console.log(`I'm about to delete an item!`);
       return {
         ...state,
-        items: state.items.filter(item => item.id !== action.id)
+        items: state.items.filter(item => item._id !== action.id)
       };
     case GET_ITEMS:
       console.log('Hello from the reducer. You need to connect to me to actually change your state.');

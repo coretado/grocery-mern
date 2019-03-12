@@ -3,32 +3,36 @@ import { ADD_ITEM, DELETE_ITEM, GET_ITEMS, LOAD_ITEMS_ERROR, LOADING_ITEMS, } fr
 
 export const addItem = (item) => (dispatch) => {
   axios
-    .post('/api/items', item)
-    .then(results =>
-      dispatch({
-        type: ADD_ITEM, 
-        item: results.data
-      })
-    );
+  .post('/api/items', item)
+  .then(res =>
+    dispatch({
+      type: ADD_ITEM, 
+      item: res.data
+    })
+  );
 };
 
-export const deleteItem = (id) => {
-  return {
-    type: DELETE_ITEM,
-    id
-  };
+export const deleteItem = (id) => dispatch => {
+  axios
+  .delete(`/api/items/${id}`)
+  .then(res =>
+    dispatch({
+      type: DELETE_ITEM, 
+      id
+    })
+  );
 };
 
 export const getItems = () => (dispatch) => {
   dispatch(loadItems());
   axios
-    .get('/api/items')
-    .then(results => 
-      dispatch({
-        type: GET_ITEMS, 
-        items: results.data
-      })
-    )
+  .get('/api/items')
+  .then(res => 
+    dispatch({
+      type: GET_ITEMS, 
+      items: res.data
+    })
+  );
 };
 
 export const loadItems = () => {
