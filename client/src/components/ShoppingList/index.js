@@ -7,8 +7,7 @@ import Loading from '../Loading';
 import ShoppingDay from './ShoppingDay';
 
 class ShoppingList extends React.Component {
-  componentDidMount() {
-    console.log(this.props.item);
+  componentDidMount() {    
     this.props.getItems();      
   }
 
