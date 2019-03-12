@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
-import { v4 } from 'uuid';
+import { connect } from 'react-redux';
+import { getItems } from '../../store/actions/itemActions';
 
 import ShoppingDay from './ShoppingDay';
-
-const ITEMS = [
-  { id: v4(), name: 'Eggs' },
-  { id: v4(), name: 'Milk' },
-  { id: v4(), name: 'Steak' },
-  { id: v4(), name: 'Perrier' },
-];
 
 const ShoppingList = () => {
   const [items, setItems] = useState(ITEMS);
@@ -44,4 +38,12 @@ const ShoppingList = () => {
   );
 }
 
-export default ShoppingList;
+const mapStateToProps = () => {
+
+}
+
+const mapDispatchToProps = () => {
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShoppingList);
