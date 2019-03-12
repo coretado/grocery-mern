@@ -1,14 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getItems } from '../../store/actions/itemActions';
+import PropTypes from 'prop-types';
 
 import ShoppingDay from './ShoppingDay';
 
-const ShoppingList = () => {
-  const [items, setItems] = useState(ITEMS);
+const ShoppingList = ({ item, getItems }) => {
+  const [items, setItems] = useState();
 
   const deleteItem = (id) => {
     setItems(items.filter(item => item.id !== id));
+  }
+
+  // Empty array to instantiate only on "componentDidMount()"
+  useEffect(() => {
+    // Connecting with the store
+    getItems();
+    // Setting store items    
+    setItems(item.items);
+    // Probably do this eventually...
+    // setItems(getItems());
+  }, [])
+
+  if (!items) {
+    return <div>Loading</div>;
   }
 
   return (
@@ -38,12 +53,23 @@ const ShoppingList = () => {
   );
 }
 
-const mapStateToProps = () => {
+ShoppingList.propTypes = {
+  getItems: PropTypes.func.isRequired,
+  item: PropTypes.object.isRequired
+};
 
+const mapStateToProps = (state) => {
+  const { item } = state;
+  return {
+    item
+  }
+};
+
+const mapDispatchToProps = {
+  getItems
 }
 
-const mapDispatchToProps = () => {
-
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ShoppingList);
+export default connect(
+  mapStateToProps, 
+  mapDispatchToProps
+)(ShoppingList);

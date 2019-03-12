@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import Navigation from '../Navigation';
 import ShoppingList from '../ShoppingList';
@@ -6,12 +7,14 @@ import ShoppingList from '../ShoppingList';
 class App extends Component {
   render() {
     return (
-      <>
-        <Navigation />
-        <div className='container'>
-          <ShoppingList />
-        </div>        
-      </>
+      <Router>
+        <>
+          <Navigation />
+          <div className='container'>
+            <ShoppingList />
+          </div>        
+        </>
+      </Router>
     );
   }
 }

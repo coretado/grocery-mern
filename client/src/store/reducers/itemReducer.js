@@ -8,7 +8,7 @@ const INITIAL_STATE = {
     { id: v4(), name: 'Steak' },
     { id: v4(), name: 'Perrier' },
   ]
-}
+};
 
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {
@@ -17,6 +17,7 @@ export default function(state = INITIAL_STATE, action) {
     case DELETE_ITEM:
       return {...state}
     case GET_ITEMS:
+      console.log('Hello from the reducer. You need to connect to me to actually change your state.');
       return {...state}
     default:
       return state;

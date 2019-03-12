@@ -17,5 +17,5 @@ export const deleteItem = (id) => {
 export const getItems = () => {
   return {
     type: GET_ITEMS,
-  }
-}
+  };
+};
