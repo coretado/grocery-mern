@@ -1,11 +1,15 @@
 import axios from 'axios';
 import { ADD_ITEM, DELETE_ITEM, GET_ITEMS, LOAD_ITEMS_ERROR, LOADING_ITEMS, } from './types';
 
-export const addItem = (item) => {
-  return {
-    type: ADD_ITEM,
-    item
-  };
+export const addItem = (item) => (dispatch) => {
+  axios
+    .post('/api/items', item)
+    .then(results =>
+      dispatch({
+        type: ADD_ITEM, 
+        item: results.data
+      })
+    );
 };
 
 export const deleteItem = (id) => {

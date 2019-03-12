@@ -25,11 +25,11 @@ class ShoppingList extends React.Component {
         ? (
           <>      
             <div className='col s12 m5'>              
-                {items.map(({ id, name }) => (
+                {items.map(({ _id, name }) => (
                   <ShoppingDay
-                    key={id} 
+                    key={_id} 
                     name={name}               
-                    id={id}
+                    id={_id}
                   />
                 ))}                         
               <div className='divider' />              

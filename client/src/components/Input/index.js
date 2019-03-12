@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addItem } from '../../store/actions/itemActions';
-import { v4 } from 'uuid';
 import PropTypes from 'prop-types';
 
 const Input = ({ addItem }) => {
@@ -21,10 +20,7 @@ const Input = ({ addItem }) => {
     event.preventDefault();
 
     // Item to be added to item state
-    const newItem = {
-      id: v4(), 
-      name: item
-    };
+    const newItem = { name: item };
 
     // Send new item to store
     addItem(newItem);
