@@ -4,7 +4,7 @@ import { addItem } from '../../store/actions/itemActions';
 import { v4 } from 'uuid';
 import PropTypes from 'prop-types';
 
-const Modal = ({ addItem }) => {
+const Input = ({ addItem }) => {
   const [toggle, setToggle] = useState(false);
   const [item, setItem] = useState('');
 
@@ -66,12 +66,12 @@ const Modal = ({ addItem }) => {
   );
 };
 
-Modal.propTypes = {
-  deleteItem: PropTypes.func.isRequired
+Input.propTypes = {
+  addItem: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = {
   addItem
 };
 
-export default connect(null, mapDispatchToProps)(Modal);
+export default connect(null, mapDispatchToProps)(Input);

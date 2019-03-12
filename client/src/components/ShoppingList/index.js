@@ -1,57 +1,63 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { getItems } from '../../store/actions/itemActions';
 import PropTypes from 'prop-types';
 
+import Loading from '../Loading';
 import ShoppingDay from './ShoppingDay';
 
-const ShoppingList = ({ item, getItems, deleteItem }) => {
-  const [items, setItems] = useState();
-
-  // Empty array to instantiate only on "componentDidMount()"
-  useEffect(() => {
-    // Connecting with the store
-    getItems();
-    // Setting store items
-    setItems(item.items);
-    // Watching item.items for state change
-  }, [item.items]);
-
-  if (!items) {
-    return <div>Loading</div>;
+class ShoppingList extends React.Component {
+  componentDidMount() {
+    console.log(this.props.item);
+    this.props.getItems();      
   }
 
-  return (
-    <>      
-      <div className='col s12 m5'>        
-        {items.map(({ id, name }) => (
-            <ShoppingDay
-              key={id} 
-              name={name}               
-              id={id}
-            />          
-        ))}
+  render() {
+    const { loading, item } = this.props; 
+    const { items } = item;
 
-        <div className='divider' />              
-      </div>
-    </>
-  );
+    if (loading) {
+      return <Loading />;
+    }
+
+    return (
+      items.length > 0
+        ? (
+          <>      
+            <div className='col s12 m5'>              
+                {items.map(({ id, name }) => (
+                  <ShoppingDay
+                    key={id} 
+                    name={name}               
+                    id={id}
+                  />
+                ))}                         
+              <div className='divider' />              
+            </div>
+          </>
+        ) : (
+          <>
+            <div className='divider green accent-4' />
+              <p>You have no items currently. Go ahead and add some when you're ready!</p>
+            <div className='divider green accent-4' />
+          </>
+        )
+    );
+  }
 }
 
 ShoppingList.propTypes = {
   getItems: PropTypes.func.isRequired,
-  item: PropTypes.object.isRequired
+  item: PropTypes.object.isRequired, 
 };
 
-const mapStateToProps = (state) => {
-  const { item } = state;
-  return {
-    item
-  }
-};
+const mapStateToProps = ({ item, loading }) => ({
+  item,
+  loading,
+});
 
 const mapDispatchToProps = {
-  getItems
+  getItems,  
 };
 
 export default connect(
