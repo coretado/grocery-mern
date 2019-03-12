@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { v4 } from 'uuid';
-import '../../App.css';
+
+import ShoppingDay from './ShoppingDay';
 
 const ITEMS = [
   { id: v4(), name: 'Eggs' },
@@ -18,34 +18,28 @@ const ShoppingList = () => {
   }
 
   return (
-    <>
-      <button style={{marginBottom: '2rem', marginTop: '2rem'}} className='btn-small green accent-4'>
-        Add item
-      </button>
+    <>      
+      <div className='col s12 m5'>        
+        {items.map(({ id, name }) => (
+            <ShoppingDay
+              key={id} 
+              name={name} 
+              deleteItem={deleteItem} 
+              id={id}
+            />          
+        ))}
 
-      <div className='col s12 m5'>    
-        <TransitionGroup className="grocery-list">
-          {items.map(({ id, name }) => (
-            <CSSTransition 
-              key={id}                              
-              timeout={500} 
-              classNames="fade" 
-              unmountOnExit                             
-            >
-              <>
-                <div className='divider' />
-                <div className='section'>
-                  <p>{name}</p>
-                  <button onClick={() => deleteItem(id)} className='btn-small red-text text-darken-1 waves-light red lighten-5'>
-                    Delete
-                  </button>
-                </div>
-              </>              
-            </CSSTransition>
-          ))}        
-        <div className='divider' />
-        </TransitionGroup>
-      </div>      
+        <div className='divider' />      
+        <button 
+          style={{
+            marginBottom: '2rem', 
+            marginTop: '2rem'
+          }} 
+          className='btn-small green accent-4'
+        >
+          Add item
+        </button>
+      </div>
     </>
   );
 }

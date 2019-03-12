@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../../App.css';
 
 import Navigation from '../Navigation';
 import ShoppingList from '../ShoppingList';
