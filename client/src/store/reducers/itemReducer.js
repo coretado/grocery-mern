@@ -13,9 +13,17 @@ const INITIAL_STATE = {
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {
     case ADD_ITEM:
-      return {...state}
+      console.log(`I'm about to add your item: ${action.item}!`);
+      return {
+        ...state,
+        items: state.items.concat(action.item)
+      }
     case DELETE_ITEM:
-      return {...state}
+      console.log(`I'm about to delete an item!`);
+      return {
+        ...state,
+        items: state.items.filter(item => item.id !== action.id)
+      }
     case GET_ITEMS:
       console.log('Hello from the reducer. You need to connect to me to actually change your state.');
       return {...state}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
+import Input from '../Input';
 import Navigation from '../Navigation';
 import ShoppingList from '../ShoppingList';
 
@@ -11,7 +12,9 @@ class App extends Component {
         <>
           <Navigation />
           <div className='container'>
-            <ShoppingList />
+            <Input />
+            
+            <ShoppingList />            
           </div>        
         </>
       </Router>

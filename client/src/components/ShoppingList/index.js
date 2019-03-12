@@ -5,22 +5,17 @@ import PropTypes from 'prop-types';
 
 import ShoppingDay from './ShoppingDay';
 
-const ShoppingList = ({ item, getItems }) => {
+const ShoppingList = ({ item, getItems, deleteItem }) => {
   const [items, setItems] = useState();
-
-  const deleteItem = (id) => {
-    setItems(items.filter(item => item.id !== id));
-  }
 
   // Empty array to instantiate only on "componentDidMount()"
   useEffect(() => {
     // Connecting with the store
     getItems();
-    // Setting store items    
+    // Setting store items
     setItems(item.items);
-    // Probably do this eventually...
-    // setItems(getItems());
-  }, [])
+    // Watching item.items for state change
+  }, [item.items]);
 
   if (!items) {
     return <div>Loading</div>;
@@ -32,22 +27,12 @@ const ShoppingList = ({ item, getItems }) => {
         {items.map(({ id, name }) => (
             <ShoppingDay
               key={id} 
-              name={name} 
-              deleteItem={deleteItem} 
+              name={name}               
               id={id}
             />          
         ))}
 
-        <div className='divider' />      
-        <button 
-          style={{
-            marginBottom: '2rem', 
-            marginTop: '2rem'
-          }} 
-          className='btn-small green accent-4'
-        >
-          Add item
-        </button>
+        <div className='divider' />              
       </div>
     </>
   );
@@ -67,7 +52,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   getItems
-}
+};
 
 export default connect(
   mapStateToProps, 
