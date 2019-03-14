@@ -24,7 +24,7 @@ class ShoppingList extends React.Component {
     return items.length > 0 ? (
       <>
         <Input />
-        <div className="col s12 m5">
+        <div className="col s12 m6">
           <ul className="collection with-header">
             <li className="collection-header">
               <h4>Grocery Items</h4>
@@ -37,11 +37,17 @@ class ShoppingList extends React.Component {
       </>
     ) : (
       <>
-        <div className="divider green accent-4" />
-        <p>
-          You have no items currently. Go ahead and add some when you're ready!
-        </p>
-        <div className="divider green accent-4" />
+        <Input />
+        <div className="col s12 m6">
+          <ul className="collection with-header">
+            <li className="collection-header">
+              <h4>Grocery Items</h4>
+            </li>
+            <li className="collection-item">
+              You currently have no items! Please add some.
+            </li>
+          </ul>
+        </div>
       </>
     );
   }

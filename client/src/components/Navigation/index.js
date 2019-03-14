@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import SignOut from "../Auth/SignOut";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import styles from "./Navigation.module.css";
 
 const AuthNav = ({ user }) => (
   <>
@@ -24,7 +23,7 @@ const NonAuthNav = () => (
 );
 
 const Navigation = ({ auth }) => {
-  const { isAuthenticated, user } = auth;
+  const { token, user } = auth;
 
   return (
     <>
@@ -35,7 +34,7 @@ const Navigation = ({ auth }) => {
               Grocerme
             </Link>
             <ul className="right hide-on-med-and-down">
-              {isAuthenticated ? <AuthNav user={user} /> : <NonAuthNav />}
+              {token ? <AuthNav user={user} /> : <NonAuthNav />}
               <li>
                 <a href="https://github.com/SNVtahoe">GitHub</a>
               </li>

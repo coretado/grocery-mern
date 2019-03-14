@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { register } from "../../../store/actions/authActions";
-import { Redirect } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 
 const INITIAL_STATE = {
   name: "",
@@ -31,8 +31,10 @@ class SignUp extends React.Component {
       }
     }
 
-    // If authenticated, forward user
-    if (isAuthenticated) return <Redirect to="/" />;
+    // If authenticated send user to dashboard
+    if (isAuthenticated) {
+      this.props.history.push("/");
+    }
   }
 
   onChange = event => {
@@ -42,7 +44,7 @@ class SignUp extends React.Component {
 
   onSubmit = event => {
     event.preventDefault();
-    const { name, email, password, msg } = this.state;
+    const { name, email, password } = this.state;
 
     // Passing user register props from state
     this.props.register({
@@ -54,6 +56,11 @@ class SignUp extends React.Component {
 
   render() {
     const { name, email, password, msg } = this.state;
+    const { token } = this.props;
+
+    if (token) {
+      return <Redirect to="/" />;
+    }
 
     return (
       <div style={{ marginTop: "3rem" }} className="row">
@@ -128,14 +135,17 @@ class SignUp extends React.Component {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  error: state.error.error
+  error: state.error.error,
+  token: state.auth.token
 });
 
 const mapDispatchToProps = {
   register
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SignUp);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(SignUp)
+);

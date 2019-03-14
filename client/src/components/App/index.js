@@ -1,7 +1,6 @@
 import React from "react";
 import * as ROUTES from "../../routes";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { withAuth } from "../Session";
 
 import Navigation from "../Navigation";
 import ShoppingList from "../ShoppingList";

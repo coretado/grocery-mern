@@ -5,6 +5,7 @@ import styles from "./SignOut.module.css";
 
 import PropTypes from "prop-types";
 
+// Function to log out
 const SignOut = ({ logout }) => (
   <li className={styles.customHover} onClick={logout}>
     Sign Out

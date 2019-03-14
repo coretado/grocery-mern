@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
 import { login } from "../../../store/actions/authActions";
 import * as ROUTES from "../../../routes";
+import { Redirect } from "react-router-dom";
 
 const INITIAL_STATE = {
   email: "",
@@ -33,6 +33,9 @@ class SignIn extends React.Component {
 
     // If authenticated, forward user to homepage
     if (isAuthenticated) {
+      // Reset state
+      this.setState({ ...INITIAL_STATE });
+      // Send user to dashboard
       this.props.history.push(ROUTES.HOME);
     }
   }
@@ -45,6 +48,7 @@ class SignIn extends React.Component {
   onSubmit = event => {
     event.preventDefault();
 
+    // Grabbing state values to login
     const { email, password } = this.state;
 
     // Attempt to login
@@ -53,6 +57,11 @@ class SignIn extends React.Component {
 
   render() {
     const { email, password, msg } = this.state;
+    const { token } = this.props;
+
+    if (token) {
+      return <Redirect to="/" />;
+    }
 
     return (
       <div style={{ marginTop: "3rem" }} className="row">
@@ -114,7 +123,8 @@ class SignIn extends React.Component {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  error: state.error.error
+  error: state.error.error,
+  token: state.auth.token
 });
 
 const mapDispatchToProps = {

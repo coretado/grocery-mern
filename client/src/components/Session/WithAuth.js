@@ -9,17 +9,17 @@ const withAuth = Component => {
     componentDidMount() {
       this.props.loadUser();
 
-      if (!this.props.isAuthenticated) {
+      if (!this.props.token) {
         this.props.history.push(ROUTES.SIGNIN);
       }
     }
 
     render() {
-      const { isAuthenticated } = this.props;
+      const { token } = this.props;
 
       return (
         <>
-          {isAuthenticated ? (
+          {token ? (
             <Component {...this.props} />
           ) : (
             <Redirect to={ROUTES.SIGNIN} />
@@ -30,7 +30,7 @@ const withAuth = Component => {
   }
 
   const mapStateToProps = ({ auth }) => ({
-    isAuthenticated: auth.isAuthenticated
+    token: auth.token
   });
 
   const mapDispatchToProps = {

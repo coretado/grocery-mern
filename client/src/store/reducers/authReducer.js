@@ -9,9 +9,11 @@ import {
   USER_LOADING
 } from "../actions/types";
 
+// potentially not needed:
+// isAuthenticated: true,
+
 const INITIAL_STATE = {
   token: localStorage.getItem("token"),
-  isAuthenticated: null,
   isLoading: false,
   user: null
 };
@@ -26,7 +28,6 @@ export default function(state = INITIAL_STATE, { type, payload }) {
     case USER_LOADED:
       return {
         ...state,
-        isAuthenticated: true,
         isLoading: false,
         user: payload
       };
@@ -36,7 +37,6 @@ export default function(state = INITIAL_STATE, { type, payload }) {
       return {
         ...state,
         ...payload,
-        isAuthenticated: true,
         isLoading: false
       };
     case AUTH_ERROR:
@@ -48,7 +48,6 @@ export default function(state = INITIAL_STATE, { type, payload }) {
         ...state,
         token: null,
         user: null,
-        isAuthenticated: false,
         isLoading: false
       };
     default:
