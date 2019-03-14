@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import Input from "../Input";
 import Navigation from "../Navigation";
 import ShoppingList from "../ShoppingList";
+import SignIn from "../Auth/SignIn";
 import SignUp from "../Auth/SignUp";
 import { loadUser } from "../../store/actions/authActions";
 
@@ -23,7 +24,8 @@ class App extends Component {
 
             <ShoppingList />
 
-            <SignUp />
+            {/* <SignUp /> */}
+            <SignIn />
           </div>
         </>
       </Router>
