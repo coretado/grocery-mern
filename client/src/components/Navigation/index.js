@@ -4,16 +4,32 @@ import SignOut from "../Auth/SignOut";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-const Navigation = ({ auth }) => {
-  const { isAuthenticated, user } = auth;
-
-  const authLinks = <SignOut />;
-
-  const nonAuthLinks = (
+const AuthNav = ({ user }) => (
+  <>
+    <li>{user && `Welcome ${user.name}`}</li>
     <li>
       <a href="https://github.com">Github</a>
     </li>
-  );
+    <SignOut />
+  </>
+);
+
+const NonAuthNav = () => (
+  <>
+    <li>
+      <Link to="/signup">Sign Up</Link>
+    </li>
+    <li>
+      <Link to="/signin">Sign In</Link>
+    </li>
+    <li>
+      <a href="https://github.com">Github</a>
+    </li>
+  </>
+);
+
+const Navigation = ({ auth }) => {
+  const { isAuthenticated, user } = auth;
 
   return (
     <>
@@ -24,8 +40,7 @@ const Navigation = ({ auth }) => {
               Grocerme
             </Link>
             <ul className="right">
-              <li>{user && `Welcome ${user.name}`}</li>
-              {isAuthenticated ? authLinks : nonAuthLinks}
+              {isAuthenticated ? <AuthNav user={user} /> : <NonAuthNav />}
             </ul>
           </div>
         </div>
@@ -42,9 +57,4 @@ const mapStateToProps = ({ auth }) => ({
   auth
 });
 
-const mapDispatchToProps = {};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Navigation);
+export default connect(mapStateToProps)(Navigation);

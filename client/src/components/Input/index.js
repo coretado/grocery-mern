@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { addItem } from '../../store/actions/itemActions';
-import PropTypes from 'prop-types';
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { addItem } from "../../store/actions/itemActions";
+import PropTypes from "prop-types";
 
 const Input = ({ addItem }) => {
   const [toggle, setToggle] = useState(false);
-  const [item, setItem] = useState('');
+  const [item, setItem] = useState("");
 
   const onToggle = () => {
     setToggle(!toggle);
   };
 
-  const onItemChange = (event) => {
+  const onItemChange = event => {
     const { value } = event.target;
     setItem(value);
   };
 
-  const onSubmitItem = (event) => {
+  const onSubmitItem = event => {
     event.preventDefault();
 
     // Item to be added to item state
@@ -29,29 +29,43 @@ const Input = ({ addItem }) => {
     setToggle(!toggle);
 
     // Clear text field
-    setItem('');
+    setItem("");
   };
 
   const canSubmit = item ? true : false;
 
   return (
-    <div style={{marginBottom: '2rem'}}>
-      <button style={{marginTop: '2rem', marginBottom: '2rem'}} onClick={onToggle} className='green accent-4 btn waves-effect waves-light'>
-        {!toggle ? 'Add item' : 'Scratch that thought' }
+    <div style={{ marginBottom: "2rem" }}>
+      <button
+        style={{ marginTop: "2rem", marginBottom: "2rem", display: "flex" }}
+        onClick={onToggle}
+        className="green accent-4 btn waves-effect waves-light"
+      >
+        {!toggle ? (
+          <i style={{ marginRight: "0.5rem" }} class="material-icons">
+            add_circle_outline
+          </i>
+        ) : (
+          <i style={{ marginRight: "0.5rem" }} class="material-icons">
+            backspace
+          </i>
+        )}
+        {!toggle ? "Add item" : "Scratch that thought"}
       </button>
 
       {toggle && (
         <form onSubmit={onSubmitItem}>
           <div className="input-field col s6">
             <i className="material-icons prefix">mode_edit</i>
-            <input 
-              onChange={onItemChange} 
-              value={item} 
-              id="icon_prefix" />
-          </div>                                                    
-          <button 
-            type="submit" 
-            className={canSubmit ? "btn waves-effect waves-light green accent-4" : "btn disabled"}
+            <input onChange={onItemChange} value={item} id="icon_prefix" />
+          </div>
+          <button
+            type="submit"
+            className={
+              canSubmit
+                ? "btn waves-effect waves-light green accent-4"
+                : "btn disabled"
+            }
           >
             Add
             <i className="material-icons right ">send</i>
@@ -70,4 +84,7 @@ const mapDispatchToProps = {
   addItem
 };
 
-export default connect(null, mapDispatchToProps)(Input);
+export default connect(
+  null,
+  mapDispatchToProps
+)(Input);
