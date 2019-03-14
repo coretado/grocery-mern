@@ -34,7 +34,7 @@ const Navigation = ({ auth }) => {
             <Link to="/" className="brand-logo">
               Grocerme
             </Link>
-            <ul className="right">
+            <ul className="right hide-on-med-and-down">
               {isAuthenticated ? <AuthNav user={user} /> : <NonAuthNav />}
               <li>
                 <a href="https://github.com/SNVtahoe">GitHub</a>

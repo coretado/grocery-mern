@@ -5,16 +5,15 @@ import PropTypes from "prop-types";
 
 const ShoppingDay = ({ name, deleteItem, id }) => (
   <>
-    <div className="divider" />
-    <div className="section">
-      <p>{name}</p>
+    <li className="collection-item">
+      <h5>{name}</h5>
       <button
         onClick={() => deleteItem(id)}
         className="btn-small red-text text-darken-1 waves-light red lighten-5"
       >
-        <i className="material-icons">delete_forever</i>
+        Remove
       </button>
-    </div>
+    </li>
   </>
 );
 

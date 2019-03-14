@@ -1,7 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import { login } from "../../../store/actions/authActions";
+import * as ROUTES from "../../../routes";
 
 const INITIAL_STATE = {
   email: "",
@@ -29,8 +31,10 @@ class SignIn extends React.Component {
       }
     }
 
-    // If authenticated, forward user
-    // if (isAuthenticated) return <Redirect to="/" />;
+    // If authenticated, forward user to homepage
+    if (isAuthenticated) {
+      this.props.history.push(ROUTES.HOME);
+    }
   }
 
   onChange = event => {

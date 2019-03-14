@@ -9,6 +9,7 @@ const Input = ({ addItem }) => {
 
   const onToggle = () => {
     setToggle(!toggle);
+    setItem("");
   };
 
   const onItemChange = event => {
@@ -50,14 +51,23 @@ const Input = ({ addItem }) => {
             backspace
           </i>
         )}
-        {!toggle ? "Add item" : "Scratch that thought"}
+        {!toggle ? "Add item" : "Nevermind"}
       </button>
 
       {toggle && (
-        <form onSubmit={onSubmitItem}>
-          <div className="input-field col s6">
-            <i className="material-icons prefix">mode_edit</i>
-            <input onChange={onItemChange} value={item} id="icon_prefix" />
+        <form
+          style={{ border: "1px solid #e0e0e0", padding: "2rem" }}
+          onSubmit={onSubmitItem}
+        >
+          <div className="row">
+            <div className="input-field col s6">
+              <input
+                type="text"
+                onChange={onItemChange}
+                value={item}
+                placeholder="Bagels and cream cheese..."
+              />
+            </div>
           </div>
           <button
             type="submit"
