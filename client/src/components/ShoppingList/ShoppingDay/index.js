@@ -12,7 +12,7 @@ const ShoppingDay = ({ name, deleteItem, id }) => (
         onClick={() => deleteItem(id)}
         className="btn-small red-text text-darken-1 waves-light red lighten-5"
       >
-        <i class="material-icons">delete_forever</i>
+        <i className="material-icons">delete_forever</i>
       </button>
     </div>
   </>

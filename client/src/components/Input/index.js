@@ -42,11 +42,11 @@ const Input = ({ addItem }) => {
         className="green accent-4 btn waves-effect waves-light"
       >
         {!toggle ? (
-          <i style={{ marginRight: "0.5rem" }} class="material-icons">
+          <i style={{ marginRight: "0.5rem" }} className="material-icons">
             add_circle_outline
           </i>
         ) : (
-          <i style={{ marginRight: "0.5rem" }} class="material-icons">
+          <i style={{ marginRight: "0.5rem" }} className="material-icons">
             backspace
           </i>
         )}

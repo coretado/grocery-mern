@@ -3,13 +3,11 @@ import { Link } from "react-router-dom";
 import SignOut from "../Auth/SignOut";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import styles from "./Navigation.module.css";
 
 const AuthNav = ({ user }) => (
   <>
     <li>{user && `Welcome ${user.name}`}</li>
-    <li>
-      <a href="https://github.com">Github</a>
-    </li>
     <SignOut />
   </>
 );
@@ -21,9 +19,6 @@ const NonAuthNav = () => (
     </li>
     <li>
       <Link to="/signin">Sign In</Link>
-    </li>
-    <li>
-      <a href="https://github.com">Github</a>
     </li>
   </>
 );
@@ -41,6 +36,9 @@ const Navigation = ({ auth }) => {
             </Link>
             <ul className="right">
               {isAuthenticated ? <AuthNav user={user} /> : <NonAuthNav />}
+              <li>
+                <a href="https://github.com/SNVtahoe">GitHub</a>
+              </li>
             </ul>
           </div>
         </div>

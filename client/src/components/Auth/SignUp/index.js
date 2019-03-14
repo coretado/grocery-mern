@@ -56,7 +56,7 @@ class SignUp extends React.Component {
     const { name, email, password, msg } = this.state;
 
     return (
-      <div className="row">
+      <div style={{ marginTop: "3rem" }} className="row">
         <div className="col s12 m6" style={{ transform: "translateX(50%)" }}>
           <div className="card">
             <form onSubmit={this.onSubmit}>
